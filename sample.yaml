@@ -1,4 +1,3 @@
-
 config:
   model:
     # Adds a prefix to the class names of the generated objection.js models
@@ -8,7 +7,7 @@ config:
 
 # Objection models to generate
 models:
-  # Defines an objection model named Person (or PersonModel with the postfix)
+  # Defines an objection model named Person (actually PersonModel with the postfix)
   Person:
     # database table name
     tableName: persons

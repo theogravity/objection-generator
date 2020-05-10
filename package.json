@@ -1,7 +1,7 @@
 {
   "name": "objection-generator",
-  "version": "0.0.1",
-  "description": "Generates objection.js models from YAML",
+  "version": "1.0.0",
+  "description": "Generates objection.js models in Typescript from a YAML spec",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "bin": {
@@ -38,9 +38,9 @@
   "author": "Theo Gravity <theo@suteki.nu>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/theogravity/boilerplate/issues"
+    "url": "https://github.com/theogravity/objection-generator/issues"
   },
-  "homepage": "https://github.com/theogravity/boilerplate#readme",
+  "homepage": "https://github.com/theogravity/objection-generator#readme",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.1",
     "@fcostarodrigo/walk": "^4.1.0",

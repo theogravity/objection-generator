@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generator class should generate models 1`] = `
+"import { Model } from 'objection'
+import path from 'path'
+
+import { BaseModel } from './BaseModel'
+
+export class MovieModel extends BaseModel {
+  id: string
+  name: string
+
+  static tableName = 'movies'
+
+  static get jsonSchema () {
+    return {
+      type: 'object',
+      required: ['name'],
+      properties: {
+        id: {
+          type: 'string'
+        },
+        name: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 255
+        }
+      }
+    }
+  }
+
+  static get relationMappings () {
+    return {
+      reviews: {
+        relation: Model.HasManyRelation,
+        modelClass: path.join(__dirname, 'ReviewModel'),
+        join: {
+          from: 'movie.id',
+          to: 'review.movieId'
+        }
+      }
+    }
+  }
+}
+"
+`;

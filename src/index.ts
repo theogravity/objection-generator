@@ -1,3 +1,3 @@
-const blah = 'abcd'
+import { Generator } from './generator'
 
-console.log(blah)
+export { Generator }

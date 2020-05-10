@@ -26,6 +26,7 @@
     "src/**/*"
   ],
   "exclude": [
+    "src/templates/*",
     "src/**/__tests__/*",
     "src/**/__mocks__/*",
     "src/**/__fixtures__/*"

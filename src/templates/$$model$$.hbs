@@ -1,0 +1,30 @@
+import { Model } from 'objection'
+{{#if data.relations}}import path from 'path'{{/if}}
+
+import { BaseModel } from './BaseModel'
+
+export class {{modelName}} extends BaseModel {
+{{#each data.jsonSchema.properties}}
+  {{{@key}}}: {{{tsType .}}}
+{{/each}}
+
+  static tableName = '{{data.tableName}}'
+
+  static get jsonSchema() {
+    return {{{printSchema data.jsonSchema}}}
+  }
+
+  {{#if data.relations}}
+  static get relationMappings () {
+    return {
+      {{#each data.relations}}
+        {{@key}}: {
+        relation: {{relation}},
+        modelClass: path.join(__dirname, '{{{getModelName @root.modelPrefix @root.modelPostfix modelClass}}}'),
+        {{{formatRelation .}}}
+        },
+      {{/each}}
+    }
+  }
+  {{/if}}
+}

@@ -1,0 +1,149 @@
+{
+  "config": {
+    "model": {
+      "classNamePrefix": null,
+      "classNamePostfix": "Model"
+    }
+  },
+  "models": {
+    "Person": {
+      "tableName": "persons",
+      "jsonSchema": {
+        "required": [
+          "name",
+          "username"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "age": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "Male",
+              "Female",
+              "Other"
+            ],
+            "default": "Female"
+          },
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 25,
+            "nullable": false
+          }
+        }
+      },
+      "relations": {
+        "movies": {
+          "relation": "Model.ManyToManyRelation",
+          "modelClass": "Movie",
+          "join": {
+            "from": "persons.id",
+            "through": {
+              "from": "persons_movies.personId",
+              "to": "persons_movies.movieId"
+            },
+            "to": "movies.id"
+          }
+        },
+        "reviews": {
+          "relation": "Model.HasManyRelation",
+          "modelClass": "Review",
+          "join": {
+            "from": "persons.id",
+            "to": "review.authorId"
+          }
+        }
+      }
+    },
+    "Movie": {
+      "tableName": "movies",
+      "jsonSchema": {
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          }
+        }
+      },
+      "relations": {
+        "reviews": {
+          "relation": "Model.HasManyRelation",
+          "modelClass": "Review",
+          "join": {
+            "from": "movie.id",
+            "to": "review.movieId"
+          }
+        }
+      }
+    },
+    "Review": {
+      "tableName": "reviews",
+      "idColumn": "reviewId",
+      "jsonSchema": {
+        "required": [
+          "authorId",
+          "movieId"
+        ],
+        "properties": {
+          "reviewId": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "movieId": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "relations": {
+        "author": {
+          "relation": "Model.HasOneRelation",
+          "modelClass": "Person",
+          "join": {
+            "from": "reviews.authorId",
+            "to": "persons.id"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "fieldProperties": {
+      "age": {
+        "type": [
+          "number",
+          "null"
+        ]
+      },
+      "username": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 25
+      }
+    }
+  }
+}

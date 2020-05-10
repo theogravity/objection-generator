@@ -44,3 +44,58 @@ export class MovieModel extends BaseModel {
 }
 "
 `;
+
+exports[`handle-generator should generate models 2`] = `
+"import { Model } from 'objection'
+import path from 'path'
+
+import { BaseModel } from './BaseModel'
+
+export class ReviewModel extends BaseModel {
+  reviewId: string
+  authorId: string
+  movieId: string
+  content: string
+
+  static tableName = 'reviews'
+
+  static get jsonSchema () {
+    return {
+      type: 'object',
+      required: ['authorId', 'movieId'],
+      properties: {
+        reviewId: {
+          type: 'string'
+        },
+        authorId: {
+          type: 'string'
+        },
+        movieId: {
+          type: 'string'
+        },
+        content: {
+          type: 'string'
+        }
+      }
+    }
+  }
+
+  static get idColumn () {
+    return 'reviewId'
+  }
+
+  static get relationMappings () {
+    return {
+      author: {
+        relation: Model.HasOneRelation,
+        modelClass: path.join(__dirname, 'PersonModel'),
+        join: {
+          from: 'reviews.authorId',
+          to: 'persons.id'
+        }
+      }
+    }
+  }
+}
+"
+`;

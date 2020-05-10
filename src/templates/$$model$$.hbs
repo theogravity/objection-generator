@@ -8,18 +8,24 @@ export class {{modelName}} extends BaseModel {
   {{{@key}}}: {{{tsType .}}}
 {{/each}}
 
-  static tableName = '{{data.tableName}}'
+  static tableName = '{{{data.tableName}}}'
 
   static get jsonSchema() {
     return {{{printSchema data.jsonSchema}}}
   }
+
+  {{#if data.idColumn}}
+  static get idColumn() {
+    return '{{{data.idColumn}}}'
+  }
+  {{/if}}
 
   {{#if data.relations}}
   static get relationMappings () {
     return {
       {{#each data.relations}}
         {{@key}}: {
-        relation: {{relation}},
+        relation: {{{relation}}},
         modelClass: path.join(__dirname, '{{{getModelName @root.modelPrefix @root.modelPostfix modelClass}}}'),
         {{{formatRelation .}}}
         },

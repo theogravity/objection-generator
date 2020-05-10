@@ -20,8 +20,10 @@ describe('handle-generator', () => {
     })
 
     const movieModelPath = join(OUT_DIR, 'MovieModel.ts')
+    const reviewsModelPath = join(OUT_DIR, 'ReviewModel.ts')
 
     expect(pathExistsSync(movieModelPath)).toBe(true)
     expect(readFileSync(movieModelPath, 'utf8')).toMatchSnapshot()
+    expect(readFileSync(reviewsModelPath, 'utf8')).toMatchSnapshot()
   })
 })

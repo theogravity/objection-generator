@@ -2,7 +2,7 @@
 
 **Contributor:** Theo Gravity
 
-- Merge branch 'master' of https://github.com/theogravity/objection-generator
+- Add `idColumn` support
 
 ## 1.0.2 - Sun May 10 2020 08:31:29
 

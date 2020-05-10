@@ -35,6 +35,15 @@
     "type": "git",
     "url": "git+https://github.com/theogravity/boilerplate.git"
   },
+  "keywords": [
+    "objection",
+    "objectionjs",
+    "model",
+    "orm",
+    "generator",
+    "yaml",
+    "typescript"
+  ],
   "author": "Theo Gravity <theo@suteki.nu>",
   "license": "MIT",
   "bugs": {

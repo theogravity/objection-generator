@@ -1,6 +1,6 @@
 {
   "name": "objection-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generates objection.js models in Typescript from a YAML spec",
   "main": "build/index.js",
   "types": "build/index.d.ts",

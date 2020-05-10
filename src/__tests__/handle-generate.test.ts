@@ -6,7 +6,7 @@ import { join } from 'path'
 
 import { handleGenerate } from '../handle-generate'
 
-const OUT_DIR = '/tmp/generator-models'
+const OUT_DIR = '/tmp/objection-generator-test/handle-generate'
 
 beforeEach(async () => {
   await remove(OUT_DIR)

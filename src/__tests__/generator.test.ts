@@ -10,7 +10,7 @@ import { YamlConfig } from '../interfaces'
 
 const templateDir = join(__dirname, '..', 'templates')
 
-const OUT_DIR = '/tmp/generator-models'
+const OUT_DIR = '/tmp/objection-generator-test/generator'
 
 beforeEach(async () => {
   await remove(OUT_DIR)

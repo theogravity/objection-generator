@@ -1,3 +1,11 @@
+## 1.1.2 - Mon May 11 2020 16:32:30
+
+**Contributor:** Theo Gravity
+
+- Update README.md
+
+Correct directory output blurb in readme
+
 ## 1.1.1 - Mon May 11 2020 02:07:15
 
 **Contributor:** Theo Gravity

@@ -63,7 +63,7 @@ Using the `sample.yaml` spec in this project:
 Will generate the following folder structure:
 
 ```
-output/
+/tmp/lib/output/
 ├── models/
 │   ├── BaseModel.ts
 │   ├── <model>.ts
@@ -149,12 +149,12 @@ Positionals:
 
 Using the `sample.yaml` spec in this project:
 
-`$ objection-generator generate sample.yaml /tmp/lib`
+`$ objection-generator knex sample.yaml /tmp/lib`
 
 Will generate the following folder structure:
 
 ```
-output/
+/tmp/lib/output/
 ├── migrations/
 │   └── 000-init.js
 └── migrate.js

@@ -17,14 +17,20 @@ export class BaseGenerator {
     this.outDir = outDir
   }
 
+  /**
+   * Always call this first
+   */
   async init (): Promise<void> {
     this.templateFiles = await readDirs(this.templatesDir)
     await registerHelpers(Handlebars, this.templatesDir)
   }
 
+  /**
+   * Call this after init
+   */
   async generate (): Promise<void> {}
 
-  prettify (content: string) {
+  protected prettify (content: string) {
     return prettier.format(content)
   }
 }

@@ -126,6 +126,8 @@ There are many limitations to the generation since there is not an exact mapping
 between JSON schema types / information in the objection models to an exact database
 specification.
 
+Some limitations include:
+
 - No foreign keys are generated (PRs welcomed - make use of the `relations` please)
 - No through tables are generated
 

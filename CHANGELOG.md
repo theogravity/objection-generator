@@ -1,3 +1,9 @@
+## 1.0.4 - Mon May 11 2020 01:57:24
+
+**Contributor:** Theo Gravity
+
+- Add knex migration generation support
+
 ## 1.0.3 - Sun May 10 2020 19:13:20
 
 **Contributor:** Theo Gravity

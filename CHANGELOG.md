@@ -1,3 +1,9 @@
+## 1.1.3 - Mon May 11 2020 16:42:53
+
+**Contributor:** Theo Gravity
+
+- Fix npm publish issue
+
 ## 1.1.2 - Mon May 11 2020 16:32:30
 
 **Contributor:** Theo Gravity

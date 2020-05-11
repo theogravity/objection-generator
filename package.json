@@ -1,7 +1,7 @@
 {
   "name": "objection-generator",
   "version": "1.0.3",
-  "description": "Generates objection.js models in Typescript from a YAML spec",
+  "description": "Generates knex migrations and objection.js models in Typescript from a YAML spec",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "bin": {
@@ -42,7 +42,8 @@
     "orm",
     "generator",
     "yaml",
-    "typescript"
+    "typescript",
+    "knex"
   ],
   "author": "Theo Gravity <theo@suteki.nu>",
   "license": "MIT",
@@ -56,8 +57,8 @@
     "ajv": "^6.12.2",
     "fs-extra": "^9.0.0",
     "handlebars": "^4.7.6",
-    "prettier-standard": "16.3.0",
     "js-yaml": "^3.13.1",
+    "prettier-standard": "16.3.0",
     "yargs": "^15.3.1"
   },
   "devDependencies": {
@@ -72,8 +73,10 @@
     "jest": "^25.5.4",
     "jest-cli": "26.0.1",
     "jest-junit-reporter": "1.1.0",
+    "knex": "^0.21.1",
     "lint-staged": "10.2.2",
     "pre-commit": "1.2.2",
+    "sqlite3": "^4.2.0",
     "standardx": "^5.0.0",
     "toc-md-alt": "^0.3.2",
     "ts-jest": "25.5.1",

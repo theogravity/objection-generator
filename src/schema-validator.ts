@@ -43,6 +43,45 @@ const schema = {
         }
       }
     },
+    database: {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        // unique section
+        unique: {
+          type: 'object',
+          patternProperties: {
+            // index name definition
+            '[A-Za-z0-9_]*': {
+              type: 'object',
+              properties: {
+                columns: {
+                  type: 'array'
+                }
+              }
+            }
+          }
+        },
+        // index section
+        index: {
+          type: 'object',
+          patternProperties: {
+            // index name definition
+            '[A-Za-z0-9_]*': {
+              type: 'object',
+              properties: {
+                columns: {
+                  type: 'array'
+                },
+                indexType: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     components: {
       additionalProperties: true
     }

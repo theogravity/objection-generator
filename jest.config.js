@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   collectCoverageFrom: [
     'src/**/*.ts',
-    '!src/templates/*'
+    '!src/templates/**'
   ],
   testResultsProcessor: './node_modules/jest-junit-reporter',
   testEnvironment: 'node',
@@ -14,7 +14,7 @@ module.exports = {
     global: {
       statements: 84,
       branches: 75,
-      functions: 87,
+      functions: 86,
       lines: 84
     }
   }

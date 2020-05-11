@@ -4,14 +4,35 @@ import { resolve, dirname } from 'path'
 import { Arguments } from './interfaces'
 import { dereference, loadYaml } from './utils'
 import { validateConfig } from './schema-validator'
-import { Generator } from './generator'
+import { ObjectionGenerator } from './generators/objection'
+import { KnexGenerator } from './generators/knex'
+import { BaseGenerator } from './generators/base'
 
-export async function handleGenerate (params: Arguments) {
+export async function handleGenerateObjection (params: Arguments) {
+  params.templateDir = params.templateDir
+    ? params.templateDir
+    : resolve(__dirname, 'templates', 'objection')
+
+  await handleGenerate(ObjectionGenerator, params)
+
+  console.log('Models generated in:', params.outDir)
+}
+
+export async function handleGenerateKnex (params: Arguments) {
+  params.templateDir = params.templateDir
+    ? params.templateDir
+    : resolve(__dirname, 'templates', 'knex')
+
+  await handleGenerate(KnexGenerator, params)
+  console.log('Migration generated in:', params.outDir)
+}
+
+export async function handleGenerate (
+  Generator: typeof BaseGenerator,
+  params: Arguments
+) {
   try {
     const specPath = resolve(process.cwd(), params.specFile)
-    const templateDir = params.templateDir
-      ? params.templateDir
-      : resolve(__dirname, 'templates')
     const outDir = resolve(process.cwd(), params.outDir)
 
     const data = await loadYaml(specPath)
@@ -20,14 +41,13 @@ export async function handleGenerate (params: Arguments) {
 
     await validateConfig(data)
 
-    console.log('Generating models')
+    console.log('Generating')
 
     const dereferenced = await dereference(data, dirname(specPath))
 
-    const generator = new Generator(dereferenced, templateDir, outDir)
+    const generator = new Generator(dereferenced, params.templateDir, outDir)
+    await generator.init()
     await generator.generate()
-
-    console.log('Models generated in:', outDir)
   } catch (err) {
     if (err instanceof Ajv.ValidationError) {
       console.log(err.errors)

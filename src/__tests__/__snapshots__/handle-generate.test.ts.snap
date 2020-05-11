@@ -1,6 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`handle-generator should generate models 1`] = `
+exports[`handle-generator should generate a knex migration 1`] = `
+"async function up (knex) {
+  await knex.schema.createTable('persons', table => {
+    table.string('id')
+    table.string('name', 100).notNullable()
+    table.integer('age')
+    table.enu('gender', ['Male', 'Female', 'Other']).defaultTo('Female')
+    table
+      .string('username', 25)
+      .notNullable()
+      .defaultTo('default-user')
+    table.datetime('created')
+
+    table.primary(['id'])
+
+    table.unique(['username'], 'uniq_username')
+
+    table.index(['age', 'name'], 'name_age_index')
+  })
+  await knex.schema.createTable('movies', table => {
+    table.string('id')
+    table.string('name', 255).notNullable()
+
+    table.primary(['id'])
+  })
+  await knex.schema.createTable('reviews', table => {
+    table.string('review_id')
+    table.string('author_id').notNullable()
+    table.string('movie_id').notNullable()
+    table.string('content')
+
+    table.primary(['review_id'])
+  })
+}
+
+async function down (knex) {
+  await knex.schema.dropTable('persons')
+  await knex.schema.dropTable('movies')
+  await knex.schema.dropTable('reviews')
+}
+
+module.exports = {
+  up,
+  down
+}
+"
+`;
+
+exports[`handle-generator should generate objection models 1`] = `
 "import { Model } from 'objection'
 import path from 'path'
 
@@ -45,7 +93,7 @@ export class MovieModel extends BaseModel {
 "
 `;
 
-exports[`handle-generator should generate models 2`] = `
+exports[`handle-generator should generate objection models 2`] = `
 "import { Model } from 'objection'
 import path from 'path'
 

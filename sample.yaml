@@ -35,6 +35,9 @@ models:
             # combine a ref and a non-ref, see json schema spec for more info
             - $ref: '#/components/fieldProperties/username'
             - default: 'default-user'
+        created:
+          type: string
+          format: date-time
     # Define relations - maps to Model#relationMappings()
     # https://vincit.github.io/objection.js/guide/relations.html#examples
     relations:
@@ -53,6 +56,22 @@ models:
         join:
           from: persons.id
           to: review.authorId
+    # Section for knex-specific generation
+    database:
+      # define unique indices
+      unique:
+        # made-up name for the unique index
+        uniq_username:
+          # columns to add to unique index
+          # values will always be converted to snake case
+          columns: ['username']
+      # Define indices
+      index:
+        # made-up name for the index
+        name_age_index:
+          # columns to index
+          # values will always be converted to snake case
+          columns: ['age', 'name']
   Movie:
     tableName: movies
     jsonSchema:

@@ -1,0 +1,38 @@
+async function up(knex) {
+{{#each models}}
+  await knex.schema.createTable('{{{tableName}}}', (table) => {
+    {{#each jsonSchema.properties}}
+      {{{defineDbCol @key .}}}{{{addRequired @key ..}}}{{{addDefault .}}}
+    {{/each}}
+
+    {{#if idColumn}}
+        table.primary([{{{toArray idColumn}}}])
+    {{else}}
+        table.primary(['id'])
+    {{/if}}
+
+    {{#each database.unique}}
+        table.unique([{{{toArray columns}}}], '{{{@key}}}')
+    {{/each}}
+
+    {{#each database.index}}
+      {{#if indexType}}
+          table.index([{{{toArray columns}}}], '{{{@key}}}', '{{{indexType}}}')
+      {{else}}
+          table.index([{{{toArray columns}}}], '{{{@key}}}')
+      {{/if}}
+    {{/each}}
+  })
+{{/each}}
+}
+
+async function down(knex) {
+  {{#each models}}
+    await knex.schema.dropTable('{{{tableName}}}')
+  {{/each}}
+}
+
+module.exports = {
+  up,
+  down
+}

@@ -1,3 +1,5 @@
-import { Generator } from './generator'
+import { BaseGenerator } from './generators/base'
+import { ObjectionGenerator } from './generators/objection'
+import { KnexGenerator } from './generators/knex'
 
-export { Generator }
+export { BaseGenerator, KnexGenerator, ObjectionGenerator }

@@ -1,3 +1,9 @@
+## 1.1.1 - Mon May 11 2020 02:07:15
+
+**Contributor:** Theo Gravity
+
+- Update package.json metadata
+
 ## 1.0.4 - Mon May 11 2020 01:57:24
 
 **Contributor:** Theo Gravity

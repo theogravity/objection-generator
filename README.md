@@ -63,7 +63,7 @@ Using the `sample.yaml` spec in this project:
 Will generate the following folder structure:
 
 ```
-/tmp/lib/output/
+/tmp/lib/
 ├── models/
 │   ├── BaseModel.ts
 │   ├── <model>.ts
@@ -154,7 +154,7 @@ Using the `sample.yaml` spec in this project:
 Will generate the following folder structure:
 
 ```
-/tmp/lib/output/
+/tmp/lib/
 ├── migrations/
 │   └── 000-init.js
 └── migrate.js

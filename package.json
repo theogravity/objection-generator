@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theogravity/boilerplate.git"
+    "url": "git+https://github.com/theogravity/objection-generator.git"
   },
   "keywords": [
     "objection",

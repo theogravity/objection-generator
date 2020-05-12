@@ -1,3 +1,9 @@
+## 1.1.4 - Tue May 12 2020 19:48:43
+
+**Contributor:** Theo Gravity
+
+- Improved validation of the YAML schema to reduce chance of user mistakes (#1)
+
 ## 1.1.3 - Mon May 11 2020 16:42:53
 
 **Contributor:** Theo Gravity

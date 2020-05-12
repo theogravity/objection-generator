@@ -50,7 +50,7 @@ export async function handleGenerate (
     await generator.generate()
   } catch (err) {
     if (err instanceof Ajv.ValidationError) {
-      console.log(err.errors)
+      console.log(JSON.stringify(err.errors, null, 2))
       process.exit(1)
     }
 

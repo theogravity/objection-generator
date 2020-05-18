@@ -49,8 +49,7 @@ module.exports = {
 `;
 
 exports[`handle-generator should generate objection models 1`] = `
-"import { Model } from 'objection'
-import path from 'path'
+"import path from 'path'
 
 import { BaseModel } from './BaseModel'
 
@@ -94,8 +93,7 @@ export class MovieModel extends BaseModel {
 `;
 
 exports[`handle-generator should generate objection models 2`] = `
-"import { Model } from 'objection'
-import path from 'path'
+"import path from 'path'
 
 import { BaseModel } from './BaseModel'
 

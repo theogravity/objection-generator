@@ -1,3 +1,9 @@
+## 1.1.5 - Mon May 18 2020 08:18:12
+
+**Contributor:** Theo Gravity
+
+- Remove unnecessary import from model generation
+
 ## 1.1.4 - Tue May 12 2020 19:48:43
 
 **Contributor:** Theo Gravity

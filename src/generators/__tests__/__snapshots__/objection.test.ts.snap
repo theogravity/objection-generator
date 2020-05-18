@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ObjectionGenerator class should generate models 1`] = `
-"import { Model } from 'objection'
-import path from 'path'
+"import path from 'path'
 
 import { BaseModel } from './BaseModel'
 

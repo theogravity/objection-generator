@@ -30,7 +30,7 @@ module.exports = (Handlebars) => {
       case 'string':
         switch (columnProps.format) {
           case 'date-time':
-            return `table.datetime('${columnName}')`
+            return `table.datetime('${columnName}').defaultTo(knex.fn.now())`
           case 'date':
             return `table.date('${columnName}')`
           case 'time':

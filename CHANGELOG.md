@@ -1,3 +1,9 @@
+## 1.1.6 - Thu May 21 2020 22:54:09
+
+**Contributor:** Theo Gravity
+
+- For knex `date-time` type, auto-adds `.defaultTo(knex.fn.now())`
+
 ## 1.1.5 - Mon May 18 2020 08:18:12
 
 **Contributor:** Theo Gravity

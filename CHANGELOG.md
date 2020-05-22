@@ -1,3 +1,9 @@
+## 1.1.7 - Fri May 22 2020 04:29:19
+
+**Contributor:** Theo Gravity
+
+- Import Model only if relation is defined
+
 ## 1.1.6 - Thu May 21 2020 22:54:09
 
 **Contributor:** Theo Gravity

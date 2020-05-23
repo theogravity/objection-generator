@@ -1,3 +1,9 @@
+## 1.2.2 - Sat May 23 2020 06:32:28
+
+**Contributor:** Theo Gravity
+
+- Enum in model: handle if enum value is a number, or contains a dash
+
 ## 1.2.1 - Sat May 23 2020 06:19:27
 
 **Contributor:** Theo Gravity

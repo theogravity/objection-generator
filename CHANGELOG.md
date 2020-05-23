@@ -1,3 +1,16 @@
+## 1.2.1 - Sat May 23 2020 06:19:27
+
+**Contributor:** Theo Gravity
+
+- Enums in models are now generated as Typescript enums
+
+When an enum is detected, a typescript enum will be created in the format of:
+
+`{ModelName}{PropertyName}Enum`
+
+Enum key names are based off the enum values. If an enum value is not
+convertable to a key, then `ITEM_{index}` is used instead for the name.
+
 ## 1.1.7 - Fri May 22 2020 04:29:19
 
 **Contributor:** Theo Gravity

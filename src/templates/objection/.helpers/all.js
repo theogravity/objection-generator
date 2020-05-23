@@ -16,7 +16,7 @@ module.exports = (Handlebars, _) => {
   })
 
   Handlebars.registerHelper('firstCap', (str) => {
-    return _.capitalize(str)
+    return _.upperFirst(str)
   })
 
   Handlebars.registerHelper('jsonStringify', (json) => {

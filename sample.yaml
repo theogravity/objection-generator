@@ -30,6 +30,9 @@ models:
           type: string
           enum: ['Male', 'Female', 'Other']
           default: 'Female'
+        favFood:
+          type: string
+          enum: ['pine-apple', 'blueBerry', 'cheese_pizza']
         username:
           allOf:
             # combine a ref and a non-ref, see json schema spec for more info

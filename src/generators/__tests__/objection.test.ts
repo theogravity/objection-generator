@@ -27,7 +27,7 @@ describe('ObjectionGenerator class', () => {
     await generator.init()
     await generator.generate()
 
-    const movieModelPath = resolve(OUT_DIR, 'models', 'MovieModel.ts')
+    const movieModelPath = resolve(OUT_DIR, 'models', 'PersonModel.ts')
 
     expect(pathExistsSync(movieModelPath)).toBe(true)
     expect(readFileSync(movieModelPath, 'utf8')).toMatchSnapshot()

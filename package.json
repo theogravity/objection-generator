@@ -1,6 +1,6 @@
 {
   "name": "objection-generator",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "Generates knex migrations and objection.js models in Typescript from a YAML spec",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -29,7 +29,8 @@
     "changelog:stamp": "git-commit-stamper parse CHANGELOG.md",
     "changelog:release": "changelog-version release",
     "lint": "prettier-standard src/**/*.ts && standardx src/**/*.ts",
-    "ts-node-dev": "ts-node-dev"
+    "ts-node-dev": "ts-node-dev",
+    "sample": "ts-node-dev src/bin/objection-generator.ts generate sample.yaml sample"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
     "fs-extra": "^9.0.0",
     "handlebars": "^4.7.6",
     "js-yaml": "^3.13.1",
+    "lodash": "^4.17.15",
     "prettier-standard": "16.3.0",
     "yargs": "^15.3.1"
   },

@@ -21,9 +21,10 @@ export class ObjectionGenerator extends BaseGenerator {
         const template = Handlebars.compile(hbsData)
 
         for (const result of this.compileModel(template)) {
+          const outpath = `${this.outDir}/models/${result.modelName}.ts`
           await promises.writeFile(
-            `${this.outDir}/models/${result.modelName}.ts`,
-            this.prettify(result.content),
+            outpath,
+            this.prettify(result.content, outpath),
             'utf8'
           )
         }
@@ -42,6 +43,7 @@ export class ObjectionGenerator extends BaseGenerator {
       const templateData = {
         modelPrefix: prefix,
         modelPostfix: postfix,
+        modelNofix: model,
         modelName,
         data: modelData
       }

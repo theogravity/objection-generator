@@ -22,9 +22,10 @@ export class KnexGenerator extends BaseGenerator {
         }
 
         const content = template(templateData)
+        const outPath = `${this.outDir}/migrations/000-init.js`
         await promises.writeFile(
-          `${this.outDir}/migrations/000-init.js`,
-          this.prettify(content),
+          outPath,
+          this.prettify(content, outPath),
           'utf8'
         )
       }

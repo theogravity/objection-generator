@@ -1,21 +1,22 @@
 
-module.exports = (Handlebars) => {
-  Handlebars.registerHelper('snakeCase', (name) => {
-    return toSnakeCase(name)
+// 2nd param is lodash
+module.exports = (Handlebars, _) => {
+  Handlebars.registerHelper('snakeCase', (str) => {
+    return _.snakeCase(str)
   })
 
   Handlebars.registerHelper('toArray', (cols) => {
     if (Array.isArray(cols)) {
-      const data = convertArrayToStr(cols.map(toSnakeCase))
+      const data = convertArrayToStr(cols.map(_.snakeCase))
 
       return data.join(', ')
     }
 
-    return `'${toSnakeCase(cols)}'`
+    return `'${_.snakeCase(cols)}'`
   })
 
   Handlebars.registerHelper('defineDbCol', (columnName, columnProps) => {
-    columnName = toSnakeCase(columnName)
+    columnName = _.snakeCase(columnName)
 
     let type = columnProps.type
 
@@ -78,14 +79,6 @@ module.exports = (Handlebars) => {
       }
     }
   })
-}
-
-// https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-120.php
-function toSnakeCase (str) {
-  return str && str
-    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-    .map(x => x.toLowerCase())
-    .join('_')
 }
 
 function convertArrayToStr (arr) {

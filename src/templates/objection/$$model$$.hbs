@@ -5,9 +5,21 @@ import path from 'path'
 
 import { BaseModel } from './BaseModel'
 
-export class {{modelName}} extends BaseModel {
 {{#each data.jsonSchema.properties}}
+  {{#if enum}}
+export enum {{{@root.modelNofix}}}{{{firstCap (camelCase @key)}}}Enum {
+  {{{defineEnum .}}}
+}
+  {{/if}}
+{{/each}}
+
+export class {{{modelName}}} extends BaseModel {
+{{#each data.jsonSchema.properties}}
+  {{#if enum}}
+  {{{@key}}}: {{{@root.modelNofix}}}{{{firstCap (camelCase @key)}}}Enum
+  {{else}}
   {{{@key}}}: {{{tsType .}}}
+  {{/if}}
 {{/each}}
 
   static tableName = '{{{data.tableName}}}'

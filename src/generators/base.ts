@@ -1,6 +1,7 @@
 import { join } from 'path'
 import prettier from 'prettier-standard'
 import Handlebars from 'handlebars'
+import * as _ from 'lodash'
 
 import { YamlConfig } from '../interfaces'
 import { readDirs } from '../utils'
@@ -30,8 +31,11 @@ export class BaseGenerator {
    */
   async generate (): Promise<void> {}
 
-  protected prettify (content: string) {
-    return prettier.format(content)
+  protected prettify (content: string, filepath) {
+    return prettier.format(content, {
+      filepath,
+      parser: 'typescript'
+    })
   }
 }
 
@@ -41,7 +45,7 @@ export async function registerHelpers (Handlebrs, templatesDir: string) {
   helpers.forEach(helperFile => {
     try {
       const helper = require(helperFile)
-      helper(Handlebrs)
+      helper(Handlebrs, _)
     } catch (e) {
       console.error('Could not load helper:', helperFile)
       console.error(e)

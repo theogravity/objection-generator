@@ -6,16 +6,25 @@ import path from 'path'
 
 import { BaseModel } from './BaseModel'
 
-export class MovieModel extends BaseModel {
+export enum PersonGenderEnum {
+  MALE = 'Male',
+  FEMALE = 'Female',
+  OTHER = 'Other'
+}
+
+export class PersonModel extends BaseModel {
   id: string
   name: string
+  age: number | null
+  gender: PersonGenderEnum
+  username: string
 
-  static tableName = 'movies'
+  static tableName = 'persons'
 
   static get jsonSchema () {
     return {
       type: 'object',
-      required: ['name'],
+      required: ['name', 'username'],
       properties: {
         id: {
           type: 'string'
@@ -23,7 +32,21 @@ export class MovieModel extends BaseModel {
         name: {
           type: 'string',
           minLength: 1,
-          maxLength: 255
+          maxLength: 100
+        },
+        age: {
+          type: ['number', 'null']
+        },
+        gender: {
+          type: 'string',
+          enum: ['Male', 'Female', 'Other'],
+          default: 'Female'
+        },
+        username: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 25,
+          nullable: false
         }
       }
     }
@@ -31,12 +54,24 @@ export class MovieModel extends BaseModel {
 
   static get relationMappings () {
     return {
+      movies: {
+        relation: Model.ManyToManyRelation,
+        modelClass: path.join(__dirname, 'MovieModel'),
+        join: {
+          from: 'persons.id',
+          through: {
+            from: 'persons_movies.personId',
+            to: 'persons_movies.movieId'
+          },
+          to: 'movies.id'
+        }
+      },
       reviews: {
         relation: Model.HasManyRelation,
         modelClass: path.join(__dirname, 'ReviewModel'),
         join: {
-          from: 'movie.id',
-          to: 'review.movieId'
+          from: 'persons.id',
+          to: 'review.authorId'
         }
       }
     }

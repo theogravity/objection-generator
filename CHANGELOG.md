@@ -1,3 +1,9 @@
+## 1.2.3 - Sat May 23 2020 09:46:08
+
+**Contributor:** Theo Gravity
+
+- Fix enum generation; replace `_.capitalize` -> `_.upperFirst`
+
 ## 1.2.2 - Sat May 23 2020 06:32:28
 
 **Contributor:** Theo Gravity

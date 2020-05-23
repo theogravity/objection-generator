@@ -46,8 +46,10 @@ module.exports = (Handlebars, _) => {
   Handlebars.registerHelper('defineEnum', (fieldProperties) => {
     if (Array.isArray(fieldProperties.enum)) {
       return fieldProperties.enum.map((item, idx) => {
-        if (isVariableName(item)) {
-          return `${_.snakeCase(item).toUpperCase()} = '${item}'`
+        if (isVariableName(item) && typeof item === 'string') {
+          return `${_.snakeCase(item).toUpperCase().replace(/-/g, '_')} = '${item}'`
+        } else if (typeof item === 'number') {
+          return `ITEM_${idx} = ${item}`
         }
 
         // handle names that can't be converted to a variable
@@ -75,6 +77,6 @@ module.exports = (Handlebars, _) => {
 }
 
 function isVariableName (str) {
-  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(str)
+  return /^[A-Za-z_][A-Za-z0-9_-]*$/.test(str)
 }
 

@@ -1,3 +1,9 @@
+## 1.2.5 - Sun May 24 2020 21:19:30
+
+**Contributor:** Theo Gravity
+
+- Fix default not working in knex generation for integers
+
 ## 1.2.4 - Sun May 24 2020 07:21:07
 
 **Contributor:** Theo Gravity

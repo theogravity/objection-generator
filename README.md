@@ -19,6 +19,7 @@ from a YAML specification.
 - [Usage](#usage)
   - [Objection.js model generation](#objectionjs-model-generation)
     - [Sample output](#sample-output)
+  - [Knex configuration](#knex-configuration)
   - [Knex migration generation](#knex-migration-generation)
     - [Limitations](#limitations)
     - [Usage](#usage-1)
@@ -77,16 +78,32 @@ import path from 'path'
 
 import { BaseModel } from './BaseModel'
 
-export class MovieModel extends BaseModel {
+export enum PersonGenderEnum {
+  MALE = 'Male',
+  FEMALE = 'Female',
+  OTHER = 'Other'
+}
+export enum PersonFavFoodEnum {
+  PINE_APPLE = 'pine-apple',
+  BLUE_BERRY = 'blueBerry',
+  CHEESE_PIZZA = 'cheese_pizza'
+}
+
+export class PersonModel extends BaseModel {
   id: string
   name: string
+  age: number | null
+  gender: PersonGenderEnum
+  favFood: PersonFavFoodEnum
+  username: string
+  created: string
 
-  static tableName = 'movies'
+  static tableName = 'persons'
 
   static get jsonSchema () {
     return {
       type: 'object',
-      required: ['name'],
+      required: ['name', 'username'],
       properties: {
         id: {
           type: 'string'
@@ -94,7 +111,29 @@ export class MovieModel extends BaseModel {
         name: {
           type: 'string',
           minLength: 1,
-          maxLength: 255
+          maxLength: 100
+        },
+        age: {
+          type: ['number', 'null']
+        },
+        gender: {
+          type: 'string',
+          enum: ['Male', 'Female', 'Other'],
+          default: 'Female'
+        },
+        favFood: {
+          type: 'string',
+          enum: ['pine-apple', 'blueBerry', 'cheese_pizza']
+        },
+        username: {
+          type: 'string',
+          minLength: 1,
+          maxLength: 25,
+          default: 'default-user'
+        },
+        created: {
+          type: 'string',
+          format: 'date-time'
         }
       }
     }
@@ -102,17 +141,52 @@ export class MovieModel extends BaseModel {
 
   static get relationMappings () {
     return {
+      movies: {
+        relation: Model.ManyToManyRelation,
+        modelClass: path.join(__dirname, 'MovieModel'),
+        join: {
+          from: 'persons.id',
+          through: {
+            from: 'persons_movies.personId',
+            to: 'persons_movies.movieId'
+          },
+          to: 'movies.id'
+        }
+      },
       reviews: {
         relation: Model.HasManyRelation,
         modelClass: path.join(__dirname, 'ReviewModel'),
         join: {
-          from: 'movie.id',
-          to: 'review.movieId'
+          from: 'persons.id',
+          to: 'review.authorId'
         }
       }
     }
   }
 }
+```
+
+## Knex configuration
+
+You must use [`knexSnakeCaseMappers`](https://vincit.github.io/objection.js/api/objection/#knexsnakecasemappers) 
+in your `knex` configuration.
+
+```typescript
+import { knexSnakeCaseMappers } from 'objection'
+import knex from 'knex'
+
+const db = knex({
+  client: 'postgres',
+
+  connection: {
+    host: '127.0.0.1',
+    user: 'objection',
+    database: 'objection_test'
+  },
+  // allows usage of camel cased names in the model
+  // and snake cased fields in the database
+  ...knexSnakeCaseMappers()
+})
 ```
 
 ## Knex migration generation

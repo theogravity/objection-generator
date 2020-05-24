@@ -8,7 +8,10 @@ export class KnexGenerator extends BaseGenerator {
   async generate () {
     await fsEx.ensureDir(this.outDir + '/migrations')
     await this.generateMigration()
-    fsEx.copy(`${this.templatesDir}/migrate.js`, `${this.outDir}/migrate.js`)
+    await fsEx.copy(
+      `${this.templatesDir}/migrate.js`,
+      `${this.outDir}/migrate.js`
+    )
   }
 
   protected async generateMigration () {

@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const kn = require('knex')
+const { knexSnakeCaseMappers } = require('objection')
 
 ;(async () => {
   // Sample migration with a sqlite database
@@ -12,7 +13,10 @@ const kn = require('knex')
       tableName: 'knex_migrations',
       directory: resolve(__dirname, 'migrations')
     },
-    timezone: 'UTC'
+    timezone: 'UTC',
+    // allows usage of camel cased names in the model
+    // and snake cased fields in the database
+    ...knexSnakeCaseMappers()
   })
 
   // run the migration

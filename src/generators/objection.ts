@@ -8,9 +8,12 @@ export class ObjectionGenerator extends BaseGenerator {
     await fsEx.ensureDir(this.outDir + '/models')
     await this.generateModels()
 
-    fsEx.copy(
+    await fsEx.copy(
       `${this.templatesDir}/BaseModel.ts`,
-      `${this.outDir}/models/BaseModel.ts`
+      `${this.outDir}/models/BaseModel.ts`,
+      {
+        overwrite: false
+      }
     )
   }
 

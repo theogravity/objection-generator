@@ -30,7 +30,7 @@
     "changelog:release": "changelog-version release",
     "lint": "prettier-standard src/**/*.ts && standardx src/**/*.ts",
     "ts-node-dev": "ts-node-dev",
-    "sample": "ts-node-dev src/bin/objection-generator.ts generate sample.yaml sample"
+    "sample": "ts-node-dev src/bin/objection-generator.ts generate sample.yaml sample && ts-node-dev src/bin/objection-generator.ts knex sample.yaml sample"
   },
   "repository": {
     "type": "git",

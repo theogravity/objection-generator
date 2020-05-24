@@ -69,11 +69,19 @@ module.exports = (Handlebars, _) => {
   })
 
   Handlebars.registerHelper('addDefault', (columnProps) => {
-    if (columnProps.default) {
+    if (columnProps.default !== undefined) {
       switch (columnProps.type) {
         case 'number':
         case 'integer':
           return `.defaultTo(${columnProps.default})`
+        case 'string':
+          switch (columnProps.format) {
+            case 'date-time':
+              // this is handled by defineDbCol
+              return ``
+            default:
+              return `.defaultTo('${columnProps.default}')`
+          }
         default:
           return `.defaultTo('${columnProps.default}')`
       }

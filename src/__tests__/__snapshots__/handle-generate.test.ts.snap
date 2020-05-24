@@ -8,6 +8,7 @@ exports[`handle-generator should generate a knex migration 1`] = `
     table.integer('age')
     table.enu('gender', ['Male', 'Female', 'Other']).defaultTo('Female')
     table.enu('fav_food', ['pine-apple', 'blueBerry', 'cheese_pizza'])
+    table.integer('children_count').defaultTo(0)
     table
       .string('username', 25)
       .notNullable()

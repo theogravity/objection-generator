@@ -33,6 +33,9 @@ models:
         favFood:
           type: string
           enum: ['pine-apple', 'blueBerry', 'cheese_pizza']
+        childrenCount:
+          type: number
+          default: 0
         username:
           allOf:
             # combine a ref and a non-ref, see json schema spec for more info

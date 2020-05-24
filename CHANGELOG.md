@@ -1,3 +1,13 @@
+## 1.2.4 - Sun May 24 2020 07:21:07
+
+**Contributor:** Theo Gravity
+
+- Objection usability / generation fixes
+
+- Will no longer overwrite `BaseModel` if it exists. This is so if you have modifications to it, you will not lose them
+- Added a note to use `knexSnakeCaseMappers` in your `knex` configuration in the readme
+- Updated `migrate.js` to use `knexSnakeCaseMappers`
+
 ## 1.2.3 - Sat May 23 2020 09:46:08
 
 **Contributor:** Theo Gravity

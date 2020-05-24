@@ -1,6 +1,6 @@
 {
   "name": "objection-generator",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Generates knex migrations and objection.js models in Typescript from a YAML spec",
   "main": "build/index.js",
   "types": "build/index.d.ts",

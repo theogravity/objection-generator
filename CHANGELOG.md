@@ -1,3 +1,11 @@
+## 1.2.6 - Wed Jun 03 2020 04:57:21
+
+**Contributor:** Theo Gravity
+
+- Update README.md
+
+Fix rendering issue of the npm badge for readme on the npm package page
+
 ## 1.2.5 - Sun May 24 2020 21:19:30
 
 **Contributor:** Theo Gravity

@@ -68,6 +68,21 @@ module.exports = (Handlebars, _) => {
     }
   })
 
+  /**
+   * Checks if a value is not in an array
+   */
+  Handlebars.registerHelper('notInArray', (context, field, required = [], options) => {
+    if (Array.isArray(required) && required.includes(field)) {
+      return options.inverse(context);
+    }
+
+    return options.fn(context);
+  })
+
+  Handlebars.registerHelper('stringify', (obj = {}) => {
+    return JSON.stringify(obj)
+  });
+
   Handlebars.registerHelper('addDefault', (columnProps) => {
     if (columnProps.default !== undefined) {
       switch (columnProps.type) {

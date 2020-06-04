@@ -18,6 +18,7 @@ export class PersonModel extends BaseModel {
   age: number | null
   gender: PersonGenderEnum
   username: string
+  excludedField: string
 
   static tableName = 'persons'
 
@@ -47,6 +48,9 @@ export class PersonModel extends BaseModel {
           minLength: 1,
           maxLength: 25,
           nullable: false
+        },
+        excludedField: {
+          type: 'string'
         }
       }
     }

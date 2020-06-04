@@ -2,7 +2,9 @@ async function up(knex) {
 {{#each models}}
   await knex.schema.createTable('{{{tableName}}}', (table) => {
     {{#each jsonSchema.properties}}
+      {{#notInArray . @key ../database.exclude.columns}}
       {{{defineDbCol @key .}}}{{{addRequired @key ..}}}{{{addDefault .}}}
+      {{/notInArray}}
     {{/each}}
 
     {{#if idColumn}}

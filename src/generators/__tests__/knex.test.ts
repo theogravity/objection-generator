@@ -4,6 +4,7 @@ import { pathExistsSync, remove } from 'fs-extra'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import validConfig from '../../__fixtures__/valid-config.json'
+import excludedColConfig from '../../__fixtures__/column-exclusion.json'
 
 import { KnexGenerator } from '../knex'
 import { YamlConfig } from '../../interfaces'
@@ -20,6 +21,22 @@ describe('KnexGenerator class', () => {
   it('should generate a migration', async () => {
     const generator = new KnexGenerator(
       (validConfig as unknown) as YamlConfig,
+      templateDir + '/knex',
+      OUT_DIR
+    )
+
+    await generator.init()
+    await generator.generate()
+
+    const migrationPath = resolve(OUT_DIR, 'migrations', '000-init.js')
+
+    expect(pathExistsSync(migrationPath)).toBe(true)
+    expect(readFileSync(migrationPath, 'utf8')).toMatchSnapshot()
+  })
+
+  it('should generate a migration with a field excluded', async () => {
+    const generator = new KnexGenerator(
+      (excludedColConfig as unknown) as YamlConfig,
       templateDir + '/knex',
       OUT_DIR
     )

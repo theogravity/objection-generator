@@ -8,6 +8,47 @@ exports[`KnexGenerator class should generate a migration 1`] = `
     table.integer('age')
     table.enu('gender', ['Male', 'Female', 'Other']).defaultTo('Female')
     table.string('username', 25).notNullable()
+    table.string('excluded_field')
+
+    table.primary(['id'])
+  })
+  await knex.schema.createTable('movies', table => {
+    table.string('id')
+    table.string('name', 255).notNullable()
+
+    table.primary(['id'])
+  })
+  await knex.schema.createTable('reviews', table => {
+    table.string('review_id')
+    table.string('author_id').notNullable()
+    table.string('movie_id').notNullable()
+    table.string('content')
+
+    table.primary(['review_id'])
+  })
+}
+
+async function down (knex) {
+  await knex.schema.dropTable('persons')
+  await knex.schema.dropTable('movies')
+  await knex.schema.dropTable('reviews')
+}
+
+module.exports = {
+  up,
+  down
+}
+"
+`;
+
+exports[`KnexGenerator class should generate a migration with a field excluded 1`] = `
+"async function up (knex) {
+  await knex.schema.createTable('persons', table => {
+    table.string('id')
+    table.string('name', 100).notNullable()
+    table.integer('age')
+    table.enu('gender', ['Male', 'Female', 'Other']).defaultTo('Female')
+    table.string('username', 25).notNullable()
 
     table.primary(['id'])
   })

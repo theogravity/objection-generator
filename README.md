@@ -333,11 +333,19 @@ models:
           type: string
           enum: ['Male', 'Female', 'Other']
           default: 'Female'
+        favFood:
+          type: string
+          enum: ['pine-apple', 'blueBerry', 'cheese_pizza']
+        childrenCount:
+          type: number
+          default: 0
         username:
           allOf:
             # combine a ref and a non-ref, see json schema spec for more info
             - $ref: '#/components/fieldProperties/username'
             - default: 'default-user'
+        someOtherField:
+          type: string
         created:
           type: string
           format: date-time
@@ -375,6 +383,11 @@ models:
           # columns to index
           # values will always be converted to snake case
           columns: ['age', 'name']
+      exclude:
+        # exclude these fields from being generated in the migration file
+        # this is if you want to have a field defined in the model
+        # but not in the database
+        columns: ['someOtherField']
   Movie:
     tableName: movies
     jsonSchema:

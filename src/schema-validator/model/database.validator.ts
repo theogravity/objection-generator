@@ -33,11 +33,25 @@ const indexValidator = {
   }
 }
 
+// for excluding columns in knex generation
+const exclusionValidator = {
+  type: 'object',
+  properties: {
+    columns: {
+      type: 'array',
+      items: {
+        type: 'string'
+      }
+    }
+  }
+}
+
 export const modelDatabaseValidator = {
   type: 'object',
   additionalProperties: false,
   properties: {
     unique: uniqueValidator,
-    index: indexValidator
+    index: indexValidator,
+    exclude: exclusionValidator
   }
 }

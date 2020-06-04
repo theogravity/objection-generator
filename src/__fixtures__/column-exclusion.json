@@ -48,6 +48,11 @@
           }
         }
       },
+      "database": {
+        "exclude": {
+          "columns": ["excludedField"]
+        }
+      },
       "relations": {
         "movies": {
           "relation": "Model.ManyToManyRelation",

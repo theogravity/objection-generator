@@ -1,3 +1,11 @@
+## 1.2.7 - Thu Jun 04 2020 05:56:39
+
+**Contributor:** Theo Gravity
+
+- Allow exclusion of a model prop in migration generation (#2)
+
+This adds a new field, `database.exclude.columns`, which when specified, will exclude the list of fields from being generated in the migration file. This allows you to keep a property as part of a model, but not in the migration.
+
 ## 1.2.6 - Wed Jun 03 2020 04:57:21
 
 **Contributor:** Theo Gravity
